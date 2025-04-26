@@ -84,5 +84,8 @@ You can deploy this app easily on [Streamlit Community Cloud](https://streamlit.
 - [Streamlit](https://streamlit.io/)
 
 ---
+## Live Demo
+
+You can view the live demo of this app [here](https://6hdrlbttptxw2rqsvg8tod.streamlit.app/).
 
 
