@@ -33,6 +33,16 @@ This project is an end-to-end web application that performs real-time sentiment 
 
 ---
 
+##  Demo Screenshots
+
+### 1. Home Page - Feedback Input and Sentiment Prediction
+![App Main Page](./2_App/app_main_page.png)
+
+### 2. Sentiment Confidence Pie Chart
+![Sentiment Confidence Pie Chart](./2_App/app_pie_chart.png)
+
+
+---
 ##  How to Run Locally
 
 1. Clone the repository:
@@ -40,3 +50,39 @@ This project is an end-to-end web application that performs real-time sentiment 
 ``bash
    git clone https://github.com/Umarajesh28/Real-Time-Sentiment-Analysis-Project.git
    cd Real-Time-Sentiment-Analysis-Project/2_App/
+
+2. Install required libraries:
+   
+``bash
+   pip install -r requirements.txt
+
+3. Run the Streamlit app:
+
+``bash
+   streamlit run app.py
+
+---
+
+##  Deployment
+
+You can deploy this app easily on [Streamlit Community Cloud](https://streamlit.io/cloud) or any cloud platform like AWS EC2.
+
+---
+
+##  Extras
+
+- As part of this project, I also explored training a custom neural network model on the **TweetEval Sentiment dataset**.
+- This work is available in the `TweetEval_Sentiment_NeuralNet.ipynb` notebook.
+- However, for better performance, higher accuracy, and real-time prediction capability, I chose to deploy a **fine-tuned pre-trained BERT model** for the final Streamlit application.
+
+---
+
+##  Acknowledgments
+
+- [Hugging Face Transformers](https://huggingface.co/transformers/)
+- [Cardiff NLP Twitter RoBERTa Sentiment Model](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment)
+- [Streamlit](https://streamlit.io/)
+
+---
+
+
