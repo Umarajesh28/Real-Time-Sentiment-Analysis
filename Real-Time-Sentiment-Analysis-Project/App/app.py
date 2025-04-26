@@ -36,8 +36,8 @@ custom_labels = {
 }
 
 # Confidence thresholds for classification
-positive_threshold = 0.7
-negative_threshold = 0.7
+positive_threshold = 0.6  # Updated threshold for Positive sentiment
+negative_threshold = 0.6  # Updated threshold for Negative sentiment
 
 # Additional Preprocessing Function (to handle common phrases)
 def preprocess_text(text):
@@ -70,7 +70,7 @@ with col2:
 
 if clear_button:
     st.session_state.user_input = ""  # Reset the session state for user input
-    st.rerun()  # Refresh the app to clear the text area
+    st.rerun()  # Refresh the app to clear the text area and reset the UI
 
 if predict_button:
     if user_input.strip() != "":
@@ -82,14 +82,11 @@ if predict_button:
         label = labels[result[0]['label']]
         score = result[0]['score']
         
-        # Apply thresholds for more deterministic sentiment classification
-        if label == "Neutral" and score < 0.6:
-            if result[0]['label'] == 'LABEL_2':  # Positive sentiment
-                label = "Positive"
-                score = result[0]['score']
-            elif result[0]['label'] == 'LABEL_0':  # Negative sentiment
-                label = "Negative"
-                score = result[0]['score']
+        # Apply stricter thresholds for classification
+        if score < positive_threshold and label == "Positive":
+            label = "Neutral"  # If Positive score is too low, classify as Neutral
+        elif score < negative_threshold and label == "Negative":
+            label = "Neutral"  # If Negative score is too low, classify as Neutral
         
         # Check if sentiment matches any of the custom categories
         sentiment_category = ""
