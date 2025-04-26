@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st 
 import plotly.express as px
 import pandas as pd
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
@@ -69,7 +69,8 @@ with col2:
     clear_button = st.button("Clear", use_container_width=True)
 
 if clear_button:
-    st.session_state.user_input = ""  # Reset the text area input
+    st.session_state.user_input = ""  # Reset the session state for user input
+    st.rerun()  # Refresh the app to clear the text area
 
 if predict_button:
     if user_input.strip() != "":
