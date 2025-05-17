@@ -9,7 +9,7 @@ st.title("Real-Time Sentiment Analysis App")
 st.markdown("Analyze customer feedback instantly using a pre-trained BERT model (RoBERTa).")
 
 st.markdown("---")
-st.markdown("📢 _Enter any feedback, review, or tweet to get an instant sentiment prediction._")
+st.markdown("_Enter any feedback, review, or tweet to get an instant sentiment prediction._")
 
 # Load tokenizer and model
 @st.cache_resource
@@ -47,18 +47,34 @@ def preprocess_text(text):
     # Handle common phrases or rephrase negative statements
     text = re.sub(r'\b(not bad|could be better|not great|kind of good)\b', 'neutral', text)
     
-    # Handling negations (simple)
-    text = re.sub(r'\b(not )+\w+', 'not_' + text.split()[1], text)
+    # Safely handle negation phrases like "not good", "not happy"
+    def handle_negation(match):
+        words = match.group().split()
+        if len(words) >= 2:
+            return 'not_' + words[1]
+        else:
+            return match.group()  # fallback to original if structure unexpected
     
-    # More preprocessing based on your dataset
+    text = re.sub(r'\bnot \w+', handle_negation, text)
+
     return text
 
 # Initialize session state for user input
 if "user_input" not in st.session_state:
     st.session_state.user_input = ""
 
+# Setup clear flag in session state
+if "clear_text" not in st.session_state:
+    st.session_state.clear_text = False
+
+# Clear user_input before the widget is rendered if flagged
+if st.session_state.clear_text:
+    st.session_state.user_input = ""
+    st.session_state.clear_text = False    
+
 # User input
-user_input = st.text_area("Enter customer feedback here:", height=150, value=st.session_state.user_input)
+user_input = st.text_area("Enter customer feedback here:", key="user_input", height=150)
+
 
 col1, col2 = st.columns([1, 1])
 
@@ -69,7 +85,7 @@ with col2:
     clear_button = st.button("Clear", use_container_width=True)
 
 if clear_button:
-    st.session_state.user_input = ""  # Reset the session state for user input
+    st.session_state.clear_text = True
     st.rerun()  # Refresh the app to clear the text area and reset the UI
 
 if predict_button:
@@ -106,3 +122,4 @@ if predict_button:
         st.plotly_chart(fig)
     else:
         st.warning("Please enter some text before clicking Predict.")
+
