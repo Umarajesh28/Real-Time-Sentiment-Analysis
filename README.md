@@ -65,9 +65,20 @@ This project is an end-to-end web application that performs real-time sentiment 
 
 ##  Deployment
 
+
 You can deploy this app easily on [Streamlit Community Cloud](https://streamlit.io/cloud) or any cloud platform like AWS EC2.
 
----
+### AWS EC2 Deployment Steps
+
+1. Launch an EC2 instance   
+2. Connect to EC2 instance via SSH    
+3. Update and install dependencies
+4. Clone your project repository
+5. Create and activate a Python virtual environment
+6. Install required Python packages
+7. Run the Streamlit app
+8. Access your app @ http://your-ec2-public-ip:8501
+   
 
 ##  Extras
 
