@@ -36,10 +36,11 @@ This project is an end-to-end web application that performs real-time sentiment 
 ##  Demo Screenshots
 
 ### 1. Home Page - Feedback Input and Sentiment Prediction
-![App Main Page](./2_App/app_main_page.png)
+![App Main Page](./Real-Time-Sentiment-Analysis-Project/App/app_main_page.png)
+
 
 ### 2. Sentiment Confidence Pie Chart
-![Sentiment Confidence Pie Chart](./2_App/app_pie_chart.png)
+![Sentiment Confidence Pie Chart](./Real-Time-Sentiment-Analysis-Project/App/app_pie_chart.png)
 
 
 ---
